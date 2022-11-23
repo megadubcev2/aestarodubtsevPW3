@@ -13,8 +13,6 @@ final class WelcomeViewController: UIViewController {
     private let incrementButton = UIButton()
     private var buttonsSV = UIStackView()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -129,8 +127,6 @@ final class WelcomeViewController: UIViewController {
 
     
     private var colorPaletteView = ColorPaletteView()
-    private var notesView = NotesViewController()
-    
     
     private func makeMenuButton(title: String) -> UIButton {
         let button = UIButton()
@@ -152,8 +148,6 @@ final class WelcomeViewController: UIViewController {
                                 #selector(paletteButtonPressed), for: .touchUpInside)
         
         let notesButton = makeMenuButton(title: "📝")
-        notesButton.addTarget(self, action: #selector(notesButtonPressed), for: .touchUpInside)
-        
         let newsButton = makeMenuButton(title: "📰")
         
         buttonsSV = UIStackView(arrangedSubviews: [colorsButton, notesButton, newsButton])
@@ -184,14 +178,6 @@ final class WelcomeViewController: UIViewController {
         
     }
     
-    private func setupNotesView(){
-        colorPaletteView.pinTop(to: incrementButton.bottomAnchor, 8)
-        colorPaletteView.pinBottom(to: buttonsSV.topAnchor, 8)
-        colorPaletteView.pinLeft(to: view, 24)
-        colorPaletteView.pinRight(to: view, 24)
-    }
-    
-    
     @objc
     private func paletteButtonPressed() {
         //пункт 8
@@ -200,11 +186,6 @@ final class WelcomeViewController: UIViewController {
         colorPaletteView.isHidden.toggle()
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
-    }
-    
-    @objc
-    private func notesButtonPressed() {
-        self.present(notesView, animated: true, completion: nil)
     }
     
     
@@ -216,7 +197,7 @@ final class WelcomeViewController: UIViewController {
         setupCommentView()
         setupColorPaletteView()
         setupMenuButtons()
-        setupColorControlSV()        
+        setupColorControlSV()
     }
     
     private func updateUI()
